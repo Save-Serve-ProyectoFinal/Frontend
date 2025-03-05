@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SaveAndServe</string>
+    <string name="title_activity_main">SaveAndServe</string>
+    <string name="package_name">com.saveandserve.app</string>
+    <string name="custom_url_scheme">com.saveandserve.app</string>
+</resources>

@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeroSectionComponent } from '../components/hero-section/hero-section.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HeroSectionComponent } from '../components/hero-section/hero-section.co
   ],
   declarations: [
     HomePage,
-    HeroSectionComponent
+    HeroSectionComponent,
+    NavbarComponent
   ]
 })
 export class HomePageModule {}

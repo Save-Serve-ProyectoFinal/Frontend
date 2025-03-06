@@ -1,4 +1,4 @@
-package com.saveandserve.app;
+package com.SaveAndServe.app;
 
 import com.getcapacitor.BridgeActivity;
 

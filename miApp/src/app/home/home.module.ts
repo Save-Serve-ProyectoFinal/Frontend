@@ -6,7 +6,9 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HeroSectionComponent } from '../components/hero-section/hero-section.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../components/navbar/navbar.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,7 +16,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    
+    HttpClientModule,
+    RouterModule.forChild([{ path: '', component: HomePage }]),
+    
   ],
   declarations: [
     HomePage,

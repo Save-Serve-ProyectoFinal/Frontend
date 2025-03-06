@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.saveandserve.app"
+    namespace "com.SaveAndServe.app"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.saveandserve.app"
+        applicationId "com.SaveAndServe.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -51,4 +51,11 @@ try {
     }
 } catch(Exception e) {
     logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+subprojects { subproject ->
+  if (subproject.name == 'capacitor-cordova-android-plugins') {
+    subproject.tasks.matching { task -> task.name == 'testClasses' }.all { task ->
+      task.enabled = false
+    }
+  }
 }

@@ -9,6 +9,7 @@ import { HeroSectionComponent } from '../components/hero-section/hero-section.co
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginmodalComponent } from '../components/loginmodal/loginmodal.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     HomePage,
     HeroSectionComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginmodalComponent
   ]
 })
 export class HomePageModule {}

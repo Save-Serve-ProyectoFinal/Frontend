@@ -7,6 +7,7 @@ import { AuthService } from '../../services/autentificacion/auth.service';
   selector: 'app-loginmodal',
   templateUrl: './loginmodal.component.html',
   styleUrls: ['./loginmodal.component.scss'],
+  standalone: false
 })
 export class LoginmodalComponent  implements OnInit {
 

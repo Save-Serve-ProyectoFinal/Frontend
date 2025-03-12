@@ -150,3 +150,9 @@ ion-tab-button{
   background-position: center center; /* Centra la imagen */
   background-attachment: fixed; /* Hace que la imagen quede fija mientras se desplaza */
 }
+
+ion-item-divider {
+  min-height: 1px;
+  background: var(--ion-color-dark);
+  margin: 16px 0;
+}

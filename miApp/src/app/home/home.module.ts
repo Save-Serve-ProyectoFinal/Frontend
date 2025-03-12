@@ -13,6 +13,7 @@ import { LoginmodalComponent } from '../components/loginmodal/loginmodal.compone
 import { CarouselComponent } from '../components/carousel/carousel.component';
 import { HowWorksComponent } from '../components/how-works/how-works.component';
 import { FeatureComponent } from '../components/feature/feature.component';
+import { StadisticComponent } from '../components/stadistic/stadistic.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { FeatureComponent } from '../components/feature/feature.component';
     LoginmodalComponent,
     CarouselComponent,
     HowWorksComponent,
-    FeatureComponent
+    FeatureComponent,
+    StadisticComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginmodalComponent } from '../components/loginmodal/loginmodal.component';
+import { CarouselComponent } from '../components/carousel/carousel.component';
 
 
 @NgModule({
@@ -26,7 +27,9 @@ import { LoginmodalComponent } from '../components/loginmodal/loginmodal.compone
     HomePage,
     HeroSectionComponent,
     NavbarComponent,
-    LoginmodalComponent
-  ]
+    LoginmodalComponent,
+    CarouselComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}

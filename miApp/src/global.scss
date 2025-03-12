@@ -28,7 +28,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
-
+/* Añade estas importaciones a tu archivo global.scss */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
 $primary: #ffc107;
 $secondary: #484c52;
 $dark-mode: false;
@@ -138,4 +142,11 @@ ion-tab-button{
 .button-native{
   background-color: #000 !important; 
 
+}
+.hero-section {
+  height: 70vh;
+  background: url('assets/IMG/herosection2.jpg') center/cover no-repeat;
+  background-size: cover; /* Asegura que la imagen cubra el área sin desbordar */
+  background-position: center center; /* Centra la imagen */
+  background-attachment: fixed; /* Hace que la imagen quede fija mientras se desplaza */
 }

@@ -264,3 +264,14 @@ ion-item {
 div[slot="content"] {
   padding: 1rem;
 }
+// css impacto
+
+.ion-border-end {
+  border-right: 3px solid var(--ion-color-warning);
+  height: 100%;
+}
+
+.ion-border-bottom {
+  border-bottom: 3px solid var(--ion-color-warning);
+  width: 100%;
+}

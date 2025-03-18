@@ -1,7 +1,9 @@
 <ion-toolbar color="dark">
   <ion-tabs>
     <ion-tab-bar slot="bottom" class="tab-bar-custom">
-      <ion-tab-button tab="inicio" routerLink="/inicio" routerLinkActive="tab-selected">
+      <ion-tab-button tab="home" routerLink="/home" routerLinkActive="tab-selected" 
+      routerDirection="root"
+        (click)="goToTop()">
         <ion-icon name="home"></ion-icon>
         <ion-label>Inicio</ion-label>
       </ion-tab-button>

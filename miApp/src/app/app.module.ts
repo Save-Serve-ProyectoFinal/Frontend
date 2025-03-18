@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // exports: [
+  //   NavbarComponent
+  // ]
 })
 export class AppModule {}

@@ -5,17 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { HeroSectionComponent } from '../components/hero-section/hero-section.component';
-import { NavbarComponent } from '../components/navbar/navbar.component';
+import { HeroSectionComponent } from '../../components/hero-section/hero-section.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginmodalComponent } from '../components/loginmodal/loginmodal.component';
-import { CarouselComponent } from '../components/carousel/carousel.component';
-import { HowWorksComponent } from '../components/how-works/how-works.component';
-import { FeatureComponent } from '../components/feature/feature.component';
-import { StadisticComponent } from '../components/stadistic/stadistic.component';
-import { ImpactoComponent } from '../components/impacto/impacto.component';
-import { AccordionComponent } from "../components/accordion/accordion.component";
+import { LoginmodalComponent } from '../../components/loginmodal/loginmodal.component';
+import { CarouselComponent } from '../../components/carousel/carousel.component';
+import { HowWorksComponent } from '../../components/how-works/how-works.component';
+import { FeatureComponent } from '../../components/feature/feature.component';
+import { StadisticComponent } from '../../components/stadistic/stadistic.component';
+import { ImpactoComponent } from '../../components/impacto/impacto.component';
+import { AccordionComponent } from "../../components/accordion/accordion.component";
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -25,12 +26,11 @@ import { AccordionComponent } from "../components/accordion/accordion.component"
     IonicModule,
     HttpClientModule,
     RouterModule.forChild([{ path: '', component: HomePage }]),
-    
+    SharedModule
 ],
   declarations: [
     HomePage,
     HeroSectionComponent,
-    NavbarComponent,
     LoginmodalComponent,
     CarouselComponent,
     HowWorksComponent,

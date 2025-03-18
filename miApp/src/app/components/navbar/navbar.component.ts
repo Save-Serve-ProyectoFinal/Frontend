@@ -57,8 +57,7 @@ export class NavbarComponent implements OnInit {
   ];
 
   menuItems = [
-    { title: 'Inicio', url: '/inicio' },
-    { title: '¿Cómo trabajamos?', url: '/como-trabajamos' },
+    { title: 'Inicio', url: '/home' },
     { title: 'Blog', url: '/articles' },
     { title: 'Involúcrate', url: '/involucrate' }
   ];
@@ -91,7 +90,13 @@ export class NavbarComponent implements OnInit {
       });
     });
   }
-
+  goToTop() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
   private initForm(): void {
     this.beneficiarioForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -189,17 +194,24 @@ export class NavbarComponent implements OnInit {
       header: 'Involúcrate',
       buttons: [
         {
-          text: 'Ser Donante',
+          text: 'Nuestros Donantes',
           icon: 'business',
           handler: () => {
             this.presentDonanteForm();
           }
         },
         {
-          text: 'Ser Beneficiario',
+          text: 'Nuestros Beneficiarios',
           icon: 'basket',
           handler: () => {
             this.presentBeneficiarioForm();
+          }
+        },
+        {
+          text: 'Suscripciones',
+          icon: 'pricetag-outline',  // Puedes cambiar 'mail' por otro icono de Ionicons que prefieras
+          handler: () => {
+            this.presentSuscripciones();
           }
         },
         {
@@ -211,7 +223,11 @@ export class NavbarComponent implements OnInit {
     });
     await actionSheet.present();
   }
-
+  
+  presentSuscripciones() {
+    this.router.navigate(['/suscripciones']);
+  }
+  
   private getUserMenuButtons(): Array<{ text: string; icon: string; handler: () => void; role?: string }> {
     if (this.isLoggedIn) {
       const buttons = [

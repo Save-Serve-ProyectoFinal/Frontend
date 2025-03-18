@@ -14,6 +14,8 @@ import { CarouselComponent } from '../components/carousel/carousel.component';
 import { HowWorksComponent } from '../components/how-works/how-works.component';
 import { FeatureComponent } from '../components/feature/feature.component';
 import { StadisticComponent } from '../components/stadistic/stadistic.component';
+import { ImpactoComponent } from '../components/impacto/impacto.component';
+import { AccordionComponent } from "../components/accordion/accordion.component";
 
 
 @NgModule({
@@ -24,7 +26,7 @@ import { StadisticComponent } from '../components/stadistic/stadistic.component'
     HttpClientModule,
     RouterModule.forChild([{ path: '', component: HomePage }]),
     
-  ],
+],
   declarations: [
     HomePage,
     HeroSectionComponent,
@@ -33,7 +35,9 @@ import { StadisticComponent } from '../components/stadistic/stadistic.component'
     CarouselComponent,
     HowWorksComponent,
     FeatureComponent,
-    StadisticComponent
+    StadisticComponent,
+    ImpactoComponent,
+    AccordionComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

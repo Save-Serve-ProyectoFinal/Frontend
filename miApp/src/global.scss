@@ -146,13 +146,121 @@ ion-tab-button{
 .hero-section {
   height: 70vh;
   background: url('assets/IMG/herosection2.jpg') center/cover no-repeat;
-  background-size: cover; /* Asegura que la imagen cubra el área sin desbordar */
-  background-position: center center; /* Centra la imagen */
-  background-attachment: fixed; /* Hace que la imagen quede fija mientras se desplaza */
+  background-size: cover; 
+  background-position: center center; 
+  background-attachment: fixed; 
 }
 
 ion-item-divider {
   min-height: 1px;
   background: var(--ion-color-dark);
   margin: 16px 0;
+}
+.display-1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.fs-2 {
+  font-size: 1.75rem;
+}
+
+.fs-5 {
+  font-size: 1.1rem;
+}
+
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.text-success {
+  color: var(--ion-color-success);
+}
+
+.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.text-dark {
+  color: var(--ion-color-dark);
+}
+
+.text-muted {
+  color: var(--ion-color-medium);
+}
+
+.ion-font-weight-bold {
+  font-weight: bold;
+}
+
+.border-dark {
+  border-color: var(--ion-color-dark);
+  border-top: 1px solid;
+  height: 1px;
+  width: 100%;
+}
+
+ion-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+ion-icon.display-1 {
+  margin-bottom: 1rem;
+}
+// css del acordeon
+.display-4 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+.bg-dark-subtle {
+  background-color: #e9ecef;
+}
+
+.accordion-header-dark {
+  --background: #e9ecef;
+  --color: #343a40;
+  font-weight: 600;
+}
+
+.accordion-header-light {
+  --background: #f8f9fa;
+  --color: #212529;
+  font-weight: 600;
+}
+
+ion-icon {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+ion-accordion-group {
+  margin-top: 1rem;
+}
+
+ion-accordion {
+  margin-bottom: 2px;
+}
+
+ion-item {
+  --border-color: #343a40;
+  --border-width: 0;
+  --border-style: none;
+}
+
+div[slot="content"] {
+  padding: 1rem;
 }

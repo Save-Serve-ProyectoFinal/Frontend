@@ -131,10 +131,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // Métodos para abrir modales
+ 
   async presentLoginModal() {
     const modal = await this.modalController.create({
-      component: LoginmodalComponent, // Componente que deberías crear
+      component: LoginmodalComponent, 
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -148,7 +148,7 @@ export class NavbarComponent implements OnInit {
 
   async presentRegisterOptions() {
     const modal = await this.modalController.create({
-      component: RegistroOpcionesModalComponent, // Componente que deberías crear
+      component: RegistroOpcionesModalComponent, 
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -156,7 +156,7 @@ export class NavbarComponent implements OnInit {
 
   async presentForgotPasswordModal() {
     const modal = await this.modalController.create({
-      component: ForgotPasswordModalComponent, // Componente que deberías crear
+      component: ForgotPasswordModalComponent, 
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -164,7 +164,7 @@ export class NavbarComponent implements OnInit {
 
   async presentDonanteForm() {
     const modal = await this.modalController.create({
-      component: EmpresaRegistroModalComponent, // Componente que deberías crear
+      component: EmpresaRegistroModalComponent, 
       cssClass: 'auth-modal',
       componentProps: {
         selectedPlan: this.selectedPlan
@@ -175,7 +175,7 @@ export class NavbarComponent implements OnInit {
 
   async presentBeneficiarioForm() {
     const modal = await this.modalController.create({
-      component: BeneficiarioRegistroModalComponent, // Componente que deberías crear
+      component: BeneficiarioRegistroModalComponent,
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -209,7 +209,7 @@ export class NavbarComponent implements OnInit {
         },
         {
           text: 'Suscripciones',
-          icon: 'pricetag-outline',  // Puedes cambiar 'mail' por otro icono de Ionicons que prefieras
+          icon: 'pricetag-outline', 
           handler: () => {
             this.presentSuscripciones();
           }
@@ -240,7 +240,7 @@ export class NavbarComponent implements OnInit {
         }
       ];
 
-      // Añadir botones específicos según el rol
+      
       if (this.userRole === 'EMPRESA') {
         buttons.push({
           text: 'Zona Empresa',
@@ -267,7 +267,7 @@ export class NavbarComponent implements OnInit {
         });
       }
 
-      // Añadir botón de cierre de sesión
+     
       buttons.push({
         text: 'Cerrar Sesión',
         icon: 'log-out',

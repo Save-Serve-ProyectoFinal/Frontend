@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'suscripciones',
     loadChildren: () => import('./pages/suscripciones/suscripciones.module').then( m => m.SuscripcionesPageModule)
-  },
+  }
 
 ];
 

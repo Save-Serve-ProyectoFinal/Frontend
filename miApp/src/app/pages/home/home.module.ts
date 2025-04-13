@@ -17,6 +17,7 @@ import { StadisticComponent } from '../../components/stadistic/stadistic.compone
 import { ImpactoComponent } from '../../components/impacto/impacto.component';
 import { AccordionComponent } from "../../components/accordion/accordion.component";
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RegistroOpcionesModalComponent } from 'src/app/components/registro-opciones-modal/registro-opciones-modal.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FeatureComponent,
     StadisticComponent,
     ImpactoComponent,
-    AccordionComponent
+    AccordionComponent,
+    RegistroOpcionesModalComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

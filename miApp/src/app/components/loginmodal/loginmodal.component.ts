@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../../services/autentificacion/auth.service';
+import { RegistroOpcionesModalComponent } from '../registro-opciones-modal/registro-opciones-modal.component';
+import { ForgotPasswordModalComponent } from '../forgot-password-modal/forgot-password-modal.component';
 
 
 @Component({
@@ -52,14 +54,22 @@ export class LoginmodalComponent  implements OnInit {
     this.modalController.dismiss();
   }
 
-  presentForgotPasswordModal() {
-    this.modalController.dismiss();
-    // Lógica para mostrar el modal de recuperación de contraseña
+  async presentForgotPasswordModal() {
+    const modal = await this.modalController.create({
+      component: ForgotPasswordModalComponent, 
+      cssClass: 'auth-modal'
+    });
+    await modal.present();
   }
 
-  presentRegisterOptions() {
-    this.modalController.dismiss();
-    // Lógica para mostrar el modal de opciones de registro
+ 
+    async presentRegisterOptions() {
+       const modal = await this.modalController.create({
+         component: RegistroOpcionesModalComponent, 
+         cssClass: 'auth-modal'
+       });
+       await modal.present();
+     
   }
 
 }

@@ -14,6 +14,7 @@ import { ForgotPasswordModalComponent } from '../forgot-password-modal/forgot-pa
 import { EmpresaRegistroModalComponent } from '../empresa-registro-modal/empresa-registro-modal.component';
 import { BeneficiarioRegistroModalComponent } from '../beneficiario-registro-modal/beneficiario-registro-modal.component';
 import { RegistroDataService } from 'src/app/services/registrodata/registro-data.service';
+import { NuestrosDonantesPage } from 'src/app/pages/nuestros-donantes/nuestros-donantes.page';
 
 
 @Component({
@@ -172,6 +173,9 @@ export class NavbarComponent implements OnInit {
     });
     await modal.present();
   }
+  nuestrosDonantes() {
+    this.router.navigate(['/nuestros-donantes']);
+  }
 
   async presentBeneficiarioForm() {
     const modal = await this.modalController.create({
@@ -197,7 +201,7 @@ export class NavbarComponent implements OnInit {
           text: 'Nuestros Donantes',
           icon: 'business',
           handler: () => {
-            this.presentDonanteForm();
+            this.nuestrosDonantes();
           }
         },
         {
@@ -226,6 +230,9 @@ export class NavbarComponent implements OnInit {
   
   presentSuscripciones() {
     this.router.navigate(['/suscripciones']);
+  }
+  index(){
+    this.router.navigate(['/home']);
   }
   
   private getUserMenuButtons(): Array<{ text: string; icon: string; handler: () => void; role?: string }> {

@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'suscripciones',
     loadChildren: () => import('./pages/suscripciones/suscripciones.module').then( m => m.SuscripcionesPageModule)
+  },  {
+    path: 'nuestros-donantes',
+    loadChildren: () => import('./pages/nuestros-donantes/nuestros-donantes.module').then( m => m.NuestrosDonantesPageModule)
   }
+
 
 ];
 

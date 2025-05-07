@@ -1,0 +1,39 @@
+.map-container {
+    height: 400px;     
+  }
+  
+  #mapa {
+    height: 100%;
+    width: 100%;
+  }
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;           
+    margin: 16px 0;
+  }
+  
+  .page-label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .banco-card {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .banco-card,
+  .banco-card ion-card-header,
+  .banco-card ion-card-title,
+  .banco-card ion-card-content,
+  .banco-card p {
+    color: #fff !important;
+  }
+  
+  .pagination-container ion-button {
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+  

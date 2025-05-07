@@ -28,22 +28,32 @@
       </ion-grid>
 
       <!-- Controles de paginación -->
-      <div class="ion-text-center ion-margin-vertical">
-        <ion-buttons class="ion-justify-content-center">
-          <ion-button [disabled]="paginaActual === 0" (click)="cambiarPagina(paginaActual - 1)">
-            <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
-          </ion-button>
+     
+  
+     <!-- Controles de paginación -->
+<div class="pagination-container">
+  <ion-button
+    fill="clear"
+    [disabled]="paginaActual === 0"
+    (click)="cambiarPagina(paginaActual - 1)"
+  >
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </ion-button>
 
-          <ion-button *ngFor="let pagina of arrayDePaginas()" [color]="pagina === paginaActual + 1 ? 'primary' : ''"
-            (click)="cambiarPagina(pagina - 1)">
-            {{ pagina }}
-          </ion-button>
+  <!-- Número de página -->
+  <div class="page-label">
+    Página {{ paginaActual + 1 }} / {{ totalPaginas }}
+  </div>
 
-          <ion-button [disabled]="paginaActual === totalPaginas - 1" (click)="cambiarPagina(paginaActual + 1)">
-            <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
+  <ion-button
+    fill="clear"
+    [disabled]="paginaActual === totalPaginas - 1"
+    (click)="cambiarPagina(paginaActual + 1)"
+  >
+    <ion-icon name="chevron-forward-outline"></ion-icon>
+  </ion-button>
+</div>
+
 
       <!-- Contenedor del mapa -->
       <div #mapSection class="ion-margin-vertical map-container">

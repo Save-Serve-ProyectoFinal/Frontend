@@ -4,26 +4,21 @@
   </ion-header>
   <ion-content>
     <div class="ion-padding">
-      <h2 class="ion-text-center ion-margin-bottom">¡Encuentra a nuestros donantes!</h2>
+      <h2 class="ion-text-center ion-margin-bottom">¡Encuentra a quien ayudar!</h2>
 
       <!-- Cards generadas dinámicamente -->
       <ion-grid>
         <ion-row>
-          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let empresa of empresas">
-            <ion-card class="empresa-card">
+          <ion-col size="12" size-md="6" size-lg="4" *ngFor="let banco of bancos">
+            <ion-card class="banco-card">
               <ion-card-header>
-                <ion-card-title>{{ empresa.nombre }}</ion-card-title>
+                <ion-card-title>{{ banco.nombre }}</ion-card-title>
               </ion-card-header>
               <ion-card-content>
-                <p><ion-icon name="call-outline"></ion-icon> Tel: {{ empresa.telefono }}</p>
-                <p><ion-icon name="location-outline"></ion-icon> Ubicación: {{ empresa.direccion }}, {{ empresa.ciudad }}
+                <p><ion-icon name="call-outline"></ion-icon> Tel: {{ banco.telefono }}</p>
+                <p><ion-icon name="location-outline"></ion-icon> Ubicación: {{ banco.direccion }}, {{ banco.ciudad }}
                 </p>
-                <p class="card-text">
-                  <ion-icon name="cash-outline"></ion-icon>
-                  Total Donaciones: €{{ TotalDonaciones(empresa) | number:'1.2-2' }}
-                </p>
-                
-                <ion-button expand="block" (click)="obtenerYMostrarUbicacion(empresa)">
+                <ion-button expand="block" (click)="obtenerYMostrarUbicacion(banco)">
                   Ver en el mapa
                 </ion-button>
               </ion-card-content>

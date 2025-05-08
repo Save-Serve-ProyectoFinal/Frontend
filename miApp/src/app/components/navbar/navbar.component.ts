@@ -176,7 +176,9 @@ export class NavbarComponent implements OnInit {
   nuestrosDonantes() {
     this.router.navigate(['/nuestros-donantes']);
   }
-
+  nuestrosBeneficiarios() {
+    this.router.navigate(['/nuestros-beneficiarios']);
+  }
   async presentBeneficiarioForm() {
     const modal = await this.modalController.create({
       component: BeneficiarioRegistroModalComponent,
@@ -208,7 +210,7 @@ export class NavbarComponent implements OnInit {
           text: 'Nuestros Beneficiarios',
           icon: 'basket',
           handler: () => {
-            this.presentBeneficiarioForm();
+            this.nuestrosBeneficiarios();
           }
         },
         {

@@ -1,52 +1,66 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { GeocodingService } from '../../services/geocoding-service.service';
-import { EmpresaService, RespuestaPaginada } from '../../services/empresaService/empresa.service';
-import { Empresa } from '../../models/empresa.model';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { IonApp, IonButton, IonIcon, IonHeader, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonFooter } from "@ionic/angular/standalone";
+import { GeocodingService } from '../../services/geocoding-service.service';
+import { BancoDeAlimentos } from 'src/app/models/bancoAlimentos.model';
+import { BancoalimentosService } from 'src/app/services/bancoAlimentoService/bancoalimentos.service';
+import { RespuestaPaginada } from 'src/app/services/empresaService/empresa.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-nuestros-donantes',
-  templateUrl: './nuestros-donantes.page.html',
-  styleUrls: ['./nuestros-donantes.page.scss'],
+  selector: 'app-nuestros-beneficiarios',
+  templateUrl: './nuestros-beneficiarios.page.html',
+  styleUrls: ['./nuestros-beneficiarios.page.scss'],
   standalone: false
 })
-export class NuestrosDonantesPage implements OnInit {
+export class NuestrosBeneficiariosPage implements OnInit, AfterViewInit {
   private map: L.Map | null = null;
   private markersMap: Map<string, L.Marker> = new Map();
-  empresas: Empresa[] = [];
+  bancos: BancoDeAlimentos[] = [];
   paginaActual = 0;
   totalPaginas = 0;
   tamanoPagina = 9;
   isLoading = true;
   errorMessage: string | null = null;
-  totalDonacionesPorEmpresa = new Map<number, number>();
+
   @ViewChild('mapSection') mapSection!: ElementRef;
 
   constructor(
     private geocodingService: GeocodingService,
-    private empresaService: EmpresaService
+    private bancoService: BancoalimentosService,
+    private platform: Platform
   ) {
-    console.log('Componente inicializado');
+    console.log('Constructor de NuestrosBeneficiariospage iniciado');
   }
 
   ngOnInit(): void {
     console.log('ngOnInit ejecutado');
-    this.initMap();
-    this.cargarEmpresas();
-    this.cargarEmpresasPaginadas();
+    this.platform.ready().then(() => {
+      console.log('Plataforma Ionic lista');
+      this.cargarBancosPaginadas();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit ejecutado');
+    setTimeout(() => {
+      this.initMap();
+    }, 500);
   }
 
   private initMap(): void {
     console.log('Inicializando mapa...');
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-    document.head.appendChild(link);
+    try {
+      if (!document.getElementById('mapa')) {
+        console.error('Elemento con id "mapa" no encontrado');
+        return;
+      }
 
-    setTimeout(() => {
+      // Asegúrate de que las hojas de estilo de Leaflet estén cargadas
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(link);
+
       this.map = L.map('mapa', { scrollWheelZoom: false }).setView([0, 0], 2);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
@@ -59,18 +73,21 @@ export class NuestrosDonantesPage implements OnInit {
         this.map?.scrollWheelZoom.disable();
       });
 
-      console.log('Mapa inicializado');
-    }, 100);
+      console.log('Mapa inicializado correctamente');
+    } catch (error) {
+      console.error('Error al inicializar el mapa:', error);
+    }
   }
- private cargarEmpresasPaginadas(): void {
+
+  private cargarBancosPaginadas(): void {
     this.isLoading = true;
     this.errorMessage = null;
     
     console.log('Cargando bancos paginados...');
-    this.empresaService.obtenerEmpresasPaginadas(this.paginaActual, this.tamanoPagina).subscribe({
-      next: (respuesta: RespuestaPaginada<Empresa>) => {
+    this.bancoService.obtenerBancosPaginadas(this.paginaActual, this.tamanoPagina).subscribe({
+      next: (respuesta: RespuestaPaginada<BancoDeAlimentos>) => {
         console.log('Bancos recibidos:', respuesta);
-        this.empresas = respuesta.content;
+        this.bancos = respuesta.content;
         this.totalPaginas = respuesta.totalPages;
         
         // Limpiar marcadores existentes si hay un mapa
@@ -79,8 +96,8 @@ export class NuestrosDonantesPage implements OnInit {
           this.markersMap.clear();
           
           // Agregar marcadores para los nuevos bancos
-          this.empresas.forEach(empresas => {
-            this.agregarMarcador(empresas, false);
+          this.bancos.forEach(banco => {
+            this.agregarMarcador(banco, false);
           });
         }
         
@@ -93,48 +110,33 @@ export class NuestrosDonantesPage implements OnInit {
       }
     });
   }
-  private cargarEmpresas(): void {
-    this.empresaService.getAll().subscribe({
-      next: (empresas) => {
-        this.empresas = empresas;
-        empresas.forEach(empresa => {
-          this.agregarMarcador(empresa, false);
-          if (empresa.id) {
-            this.cargarTotalDonacionesEmpresa(empresa.id);
-          }
-        });
-      },
-      error: (error) => {
-        console.error('Error al cargar bancos de alimentos:', error);
-      }
-    });
-  }
-obtenerYMostrarUbicacion(empresa: Empresa): void {
-    console.log('Ver en el mapa para:', empresa);
+
+  obtenerYMostrarUbicacion(banco: BancoDeAlimentos): void {
+    console.log('Ver en el mapa para:', banco);
     if (!this.map) {
       console.error('El mapa no está inicializado');
       return;
     }
     
-    const key = empresa.id ? empresa.id.toString() : empresa.nombre;
+    const key = banco.id ? banco.id.toString() : banco.nombre;
     if (this.markersMap.has(key)) {
       const marker = this.markersMap.get(key)!;
       const latlng = marker.getLatLng();
       this.map.setView(latlng, 15);
       this.scrollToMap();
     } else {
-      this.agregarMarcador(empresa, true);
+      this.agregarMarcador(banco, true);
     }
   }
 
-  private agregarMarcador(empresa: Empresa, centrar: boolean): void {
+  private agregarMarcador(banco: BancoDeAlimentos, centrar: boolean): void {
     if (!this.map) {
       console.error('El mapa no está inicializado');
       return;
     }
     
-    const key = empresa.id ? empresa.id.toString() : empresa.nombre;
-    this.geocodingService.obtenerCoordenadas(empresa.direccion, empresa.ciudad).subscribe({
+    const key = banco.id ? banco.id.toString() : banco.nombre;
+    this.geocodingService.obtenerCoordenadas(banco.direccion, banco.ciudad).subscribe({
       next: (coordenadas) => {
         if (coordenadas) {
           if (this.markersMap.has(key)) {
@@ -150,14 +152,14 @@ obtenerYMostrarUbicacion(empresa: Empresa): void {
             .addTo(this.map!)
             .bindPopup(`
               <div class="popup-content">
-                <h6>${empresa.nombre}</h6>
+                <h6>${banco.nombre}</h6>
                 <p>Haz click para más información</p>
               </div>
             `)
             .openPopup();
             
           this.markersMap.set(key, marker);
-          console.log('Marcador agregado para:', empresa);
+          console.log('Marcador agregado para:', banco);
           
           if (centrar) {
             setTimeout(() => {
@@ -166,7 +168,7 @@ obtenerYMostrarUbicacion(empresa: Empresa): void {
             }, 300);
           }
         } else {
-          console.error('No se pudieron obtener las coordenadas para:', empresa.nombre);
+          console.error('No se pudieron obtener las coordenadas para:', banco.nombre);
         }
       },
       error: (error) => {
@@ -202,29 +204,12 @@ obtenerYMostrarUbicacion(empresa: Empresa): void {
   cambiarPagina(nuevaPagina: number): void {
     console.log('Cambiando a página:', nuevaPagina);
     this.paginaActual = nuevaPagina;
-    this.cargarEmpresasPaginadas();
+    this.cargarBancosPaginadas();
   }
 
   // Método para recargar datos manualmente
   recargarDatos(): void {
     console.log('Recargando datos...');
-    this.cargarEmpresasPaginadas();
-  }
-
-  private cargarTotalDonacionesEmpresa(empresaId: number): void {
-    this.empresaService.getTotalDonaciones(empresaId).subscribe({
-      next: (total) => {
-        this.totalDonacionesPorEmpresa.set(empresaId, total);
-      },
-      error: (error) => {
-        console.error('Error al cargar total de donaciones:', error);
-        this.totalDonacionesPorEmpresa.set(empresaId, 0);
-      }
-    });
-  }
-
-  TotalDonaciones(empresa: Empresa): number {
-    if (!empresa.id) return 0;
-    return this.totalDonacionesPorEmpresa.get(empresa.id) || 0;
+    this.cargarBancosPaginadas();
   }
 }

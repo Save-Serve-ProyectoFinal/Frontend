@@ -173,6 +173,9 @@ export class NavbarComponent implements OnInit {
     });
     await modal.present();
   }
+  articulos(){
+    this.router.navigate(['/articulos']);
+  }
   nuestrosDonantes() {
     this.router.navigate(['/nuestros-donantes']);
   }

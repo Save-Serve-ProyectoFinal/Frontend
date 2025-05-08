@@ -1,0 +1,38 @@
+<ion-app>
+    <ion-header>
+        <app-hero-section-articulos></app-hero-section-articulos>
+
+    </ion-header>
+    <ion-content class="ion-padding">
+
+        <ion-grid>
+            <ion-row id="articulos-container">
+                <ion-col size="12" size-md="6" *ngFor="let articulo of articulos">
+                    <ion-card class="article-card">
+                        <ion-img [src]="getImagenUrl(articulo.imagen)" [alt]="articulo.titulo"
+                            class="card-img-top"></ion-img>
+                        <ion-card-header>
+                            <ion-card-title>
+                                <a [routerLink]="['/articulo-detalle', articulo.idArticulo]" class="article-link">
+                                    {{ articulo.titulo }}
+                                </a>
+                            </ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <!-- Aquí podrías poner un extracto si lo tienes -->
+                            <ion-button fill="solid" expand="block"
+                                [routerLink]="['/articulo-detalle', articulo.idArticulo]">
+                                Leer más
+                            </ion-button>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
+
+
+    <ion-footer>
+        <app-navbar></app-navbar>
+    </ion-footer>
+</ion-app>

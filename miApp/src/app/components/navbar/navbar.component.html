@@ -8,9 +8,9 @@
         <ion-label>Inicio</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="blog" routerLink="/articles" routerLinkActive="tab-selected">
+      <ion-tab-button (click)="articulos()" tab="blog"  routerLinkActive="tab-selected">
         <ion-icon name="newspaper"></ion-icon>
-        <ion-label>Blog</ion-label>
+        <ion-label>Articulos</ion-label>
       </ion-tab-button>
 
       <ion-tab-button (click)="presentInvolucrarseActionSheet()">

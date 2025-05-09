@@ -1,10 +1,8 @@
-/* home.page.scss (o tu archivo global) */
 .hero-blog {
   height: 20vh;
   position: relative;
   background: url('../../../assets/IMG/HeroBlog.jpg') center/cover no-repeat;
 
-  // Capa oscura para mejorar contraste
   .hero-overlay {
     position: absolute;
     top: 0;
@@ -39,7 +37,6 @@
   }
 }
 
-/* Ajustes específicos opcionales */
 @media (min-width: 768px) {
   .hero-blog {
     height: 30vh;

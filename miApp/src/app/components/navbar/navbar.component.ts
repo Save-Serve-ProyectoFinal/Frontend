@@ -15,6 +15,7 @@ import { EmpresaRegistroModalComponent } from '../empresa-registro-modal/empresa
 import { BeneficiarioRegistroModalComponent } from '../beneficiario-registro-modal/beneficiario-registro-modal.component';
 import { RegistroDataService } from 'src/app/services/registrodata/registro-data.service';
 import { NuestrosDonantesPage } from 'src/app/pages/nuestros-donantes/nuestros-donantes.page';
+import { RegistroDonanteComponent } from '../registro-donante/registro-donante.component';
 
 
 @Component({
@@ -146,6 +147,7 @@ export class NavbarComponent implements OnInit {
       this.navigateBasedOnRole(this.userRole);
     }
   }
+  
 
   async presentRegisterOptions() {
     const modal = await this.modalController.create({
@@ -154,7 +156,7 @@ export class NavbarComponent implements OnInit {
     });
     await modal.present();
   }
-
+  
   async presentForgotPasswordModal() {
     const modal = await this.modalController.create({
       component: ForgotPasswordModalComponent, 

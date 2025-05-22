@@ -22,9 +22,14 @@ const routes: Routes = [
   {
     path: 'nuestros-beneficiarios',
     loadChildren: () => import('./pages/nuestros-beneficiarios/nuestros-beneficiarios.module').then( m => m.NuestrosBeneficiariosPageModule)
-  },  {
+  },
+  {
     path: 'articulos',
     loadChildren: () => import('./pages/articulos/articulos.module').then( m => m.ArticulosPageModule)
+  },
+  {
+    path: 'detalle-articulo/:idArticulo',
+    loadChildren: () => import('./pages/detalle-articulo/detalle-articulo.module').then( m => m.DetalleArticuloPageModule)
   }
 
 

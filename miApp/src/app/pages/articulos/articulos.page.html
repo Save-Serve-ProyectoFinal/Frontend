@@ -1,6 +1,5 @@
 <ion-app>
     <ion-header>
-
     </ion-header>
     <ion-content >
         <app-hero-section-articulos></app-hero-section-articulos>
@@ -13,15 +12,14 @@
                             class="card-img-top"></ion-img>
                         <ion-card-header>
                             <ion-card-title>
-                                <a [routerLink]="['/articulo-detalle', articulo.idArticulo]" class="article-link">
+                                <a [routerLink]="['/detalle-articulo', articulo.idArticulo]" class="article-link">
                                     {{ articulo.titulo }}
                                 </a>
                             </ion-card-title>
                         </ion-card-header>
                         <ion-card-content>
-                            <!-- Aquí podrías poner un extracto si lo tienes -->
                             <ion-button fill="solid" expand="block"
-                                [routerLink]="['/articulo-detalle', articulo.idArticulo]">
+                                [routerLink]="['/detalle-articulo', articulo.idArticulo]">
                                 Leer más
                             </ion-button>
                         </ion-card-content>

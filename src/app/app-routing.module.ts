@@ -30,7 +30,18 @@ const routes: Routes = [
   {
     path: 'detalle-articulo/:idArticulo',
     loadChildren: () => import('./pages/detalle-articulo/detalle-articulo.module').then( m => m.DetalleArticuloPageModule)
+  },
+  {
+  path: 'registro-donante',
+    loadChildren: () =>
+      import('./components/registro-donante/registro-donante.module')
+        .then(m => m.RegistroDonanteModule)
+  },
+  {
+    path: 'pasarela-pago',
+    loadChildren: () => import('./pages/pasarela-pago/pasarela-pago.module').then( m => m.PasarelaPagoPageModule)
   }
+
 
 
 

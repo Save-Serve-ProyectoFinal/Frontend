@@ -9,25 +9,20 @@ import { CommonModule } from '@angular/common';
 import { RegistroOpcionesModalComponent } from '../registro-opciones-modal/registro-opciones-modal.component';
 import { LoginmodalComponent } from '../loginmodal/loginmodal.component';
 import { MenuController, ModalController } from '@ionic/angular';
+import { FilterCitiesPipe } from '../../pipes/filter-cities.pipe'; // Importa el pipe
 @Component({
   selector: 'app-registro-donante',
   templateUrl: './registro-donante.component.html',
   styleUrls: ['./registro-donante.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    
-]
+  standalone: false
 })
-export class RegistroDonanteComponent  implements OnInit {
+export class RegistroDonanteComponent implements OnInit {
 
   empresaForm!: FormGroup;
   citySearch = '';
 
   tiposDeEmpresa = ['Hotel', 'Restaurante', 'Supermercado', 'Catering', 'Tienda', 'Bar', 'Cafetería', 'Otro'];
-  ciudades: string[] = [ 'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza',
+  ciudades: string[] = ['Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza',
     'Málaga', 'Murcia', 'Palma de Mallorca', 'Las Palmas de Gran Canaria', 'Bilbao',
     'Alicante', 'Córdoba', 'Valladolid', 'Vigo', 'Gijón', "L'Hospitalet de Llobregat",
     'A Coruña', 'Vitoria-Gasteiz', 'Elche', 'Granada', 'Oviedo',
@@ -41,21 +36,21 @@ export class RegistroDonanteComponent  implements OnInit {
     'Algeciras', 'Córdoba', 'San Sebastián de los Reyes', 'Sant Cugat del Vallès', 'Torrejón de Ardoz',
     'Pontevedra', 'Segovia', 'Soria', 'Cuenca', 'Teruel',
     'Córdoba', 'Huesca', 'Ciudad Real', 'Zamora', 'Vigo'];
-   
+
   showModal = false;
   selectedPlan = 'BASICA';
 
 
   constructor(
-     private menuCtrl: MenuController,
-        private modalCtrl: ModalController,
+    private menuCtrl: MenuController,
+    private modalCtrl: ModalController,
     private formBuilder: FormBuilder,
     private subscriptionService: SuscripcionService,
     private registroDataService: RegistroDataService,
     private empresaService: EmpresaService,
     private router: Router,
-    
-  ) {}
+
+  ) { }
 
   ngOnInit() {
     this.initEmpresaForm();
@@ -81,41 +76,48 @@ export class RegistroDonanteComponent  implements OnInit {
 
   openRegisterModal() { this.showModal = true; }
   closeRegisterModal() { this.modalCtrl.dismiss(); }
-  
+
 
   selectPlan(plan: string | undefined) {
-    if (!plan) return;           
+    if (!plan) return;
     this.selectedPlan = plan;
     this.empresaForm.patchValue({ suscripcion: plan });
     this.subscriptionService.setPlan(plan);
   }
-  
-
+  openSuscripciones(): void {
+    this.router.navigate(['/suscripciones'])
+      .then(success => {
+        if (!success) {
+          console.error('Falló la navegación a /suscripciones');
+        }
+      });
+  }
   goToPayment() {
     if (this.empresaForm.invalid) {
       this.empresaForm.markAllAsTouched();
       return;
     }
-    // Guardar datos y navegar
+    console.log(this.empresaForm.value);
     this.registroDataService.setEmpresaData(this.empresaForm.value);
-    this.router.navigate(['/pasarelaPago']);
+    this.modalCtrl.dismiss();
+
+    this.router.navigate(['/pasarela-pago']);
   }
 
   toggleLogin() {
     this.closeRegisterModal();
-    // lógica para mostrar modal de login...
   }
 
   openTerms() {
     // abrir modal de términos y condiciones
   }
-   async backToLogin() {
-      await this.modalCtrl.dismiss();
-      const loginModal = await this.modalCtrl.create({
-        component: LoginmodalComponent,
-        cssClass: 'auth-modal'
-      });
-      await loginModal.present();
-    }
-    
+  async backToLogin() {
+    await this.modalCtrl.dismiss();
+    const loginModal = await this.modalCtrl.create({
+      component: LoginmodalComponent,
+      cssClass: 'auth-modal'
+    });
+    await loginModal.present();
+  }
+
 }

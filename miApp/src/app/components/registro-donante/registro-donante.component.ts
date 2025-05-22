@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { RegistroOpcionesModalComponent } from '../registro-opciones-modal/registro-opciones-modal.component';
 import { LoginmodalComponent } from '../loginmodal/loginmodal.component';
 import { MenuController, ModalController } from '@ionic/angular';
-import { FilterCitiesPipe } from '../../pipes/filter-cities.pipe'; // Importa el pipe
 @Component({
   selector: 'app-registro-donante',
   templateUrl: './registro-donante.component.html',

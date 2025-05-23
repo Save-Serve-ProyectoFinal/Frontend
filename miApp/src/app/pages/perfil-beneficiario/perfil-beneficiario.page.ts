@@ -90,9 +90,7 @@ export class PerfilBeneficiarioPage implements OnInit {
         email: this.banco.email,
         direccion: this.banco.direccion,
         telefono: this.banco.telefono,
-        cif: this.banco.cif,
         ciudad: this.banco.ciudad,
-        suscripcion: this.banco.suscripcion
     };
 
     this.bancoService.updateBancoAlimentos(this.banco.id, bancoActualizada).subscribe({

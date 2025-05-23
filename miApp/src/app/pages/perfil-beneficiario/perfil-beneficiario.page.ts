@@ -113,17 +113,21 @@ export class PerfilBeneficiarioPage implements OnInit {
     });
 }
  loadBancos() {
-    this.loadingBancos = true;
-    this.donacionService.getBancos().subscribe({
-      next: (data) => {
-        this.bancos = data;
-        this.loadingBancos = false;
-      },
-      error: (error) => {
-        this.errorBancos = 'Error al cargar los bancos de alimentos';
-        this.loadingBancos = false;
-      }
-    });
+    const userEmail = this.authService.getUserName();
+    if (userEmail) {
+      this.bancoService.getBancoAlimentosByEmail(userEmail).subscribe({
+        next: (empresaData) => {
+          this.banco = empresaData;
+          this.beneficiarioForm.patchValue({
+            empresaId: empresaData.id
+          });
+        },
+        error: (error) => {
+          console.error('Error al cargar la empresa:', error);
+          alert('Error al cargar la información de la empresa');
+        }
+      });
+    }
   }
 
 }

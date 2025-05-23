@@ -24,6 +24,7 @@ export class DonacionesPage implements OnInit {
   editedFields: { [key: string]: string } = {};
   hasChanges: boolean = false;
   bancos: any[] = [];
+  
   transportes: any[] = [];
   alergenos: any[] = [];
   donacionForm!: FormGroup;

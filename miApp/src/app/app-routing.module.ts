@@ -40,7 +40,21 @@ const routes: Routes = [
   {
     path: 'pasarela-pago',
     loadChildren: () => import('./pages/pasarela-pago/pasarela-pago.module').then( m => m.PasarelaPagoPageModule)
+  },
+  {
+    path: 'donaciones',
+    loadChildren: () => import('./pages/donaciones/donaciones.module').then( m => m.DonacionesPageModule)
+  },
+  
+  {
+    path: 'perfil-donante',
+    loadChildren: () => import('./pages/perfil-donante/perfil-donante.module').then( m => m.PerfilDonantePageModule)
+  },  {
+    path: 'perfil-beneficiario',
+    loadChildren: () => import('./pages/perfil-beneficiario/perfil-beneficiario.module').then( m => m.PerfilBeneficiarioPageModule)
   }
+
+
 
 
 

@@ -52,6 +52,10 @@ const routes: Routes = [
   },  {
     path: 'perfil-beneficiario',
     loadChildren: () => import('./pages/perfil-beneficiario/perfil-beneficiario.module').then( m => m.PerfilBeneficiarioPageModule)
+  },
+  {
+    path: 'zona-articulos',
+    loadChildren: () => import('./pages/zona-articulos/zona-articulos.module').then( m => m.ZonaArticulosPageModule)
   }
 
 

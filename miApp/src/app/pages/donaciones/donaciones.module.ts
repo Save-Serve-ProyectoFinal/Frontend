@@ -8,20 +8,18 @@ import { DonacionesPageRoutingModule } from './donaciones-routing.module';
 
 import { DonacionesPage } from './donaciones.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TablaDonacionesComponent } from "../../components/tabla-donaciones/tabla-donaciones.component";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-
     ReactiveFormsModule,
     DonacionesPageRoutingModule,
-
-
     SharedModule,
-
-  ],
+    TablaDonacionesComponent
+],
   declarations: [DonacionesPage],
 })
 export class DonacionesPageModule { }

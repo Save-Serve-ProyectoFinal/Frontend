@@ -31,6 +31,11 @@ export class TablaDonacionesComponent  implements OnInit {
 
   ngOnInit() {
     this.loadCurrentEmpresa();
+    this.donacionService.donacionActualizada$.subscribe(() => {
+    if (this.empresa?.id) {
+      this.loadDonacionesEmpresa(this.empresa.id);
+    }
+  });
   }
 
   loadCurrentEmpresa() {

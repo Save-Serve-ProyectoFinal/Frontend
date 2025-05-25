@@ -10,6 +10,7 @@ import { RegistroOpcionesModalComponent } from '../registro-opciones-modal/regis
 import { LoginmodalComponent } from '../loginmodal/loginmodal.component';
 import { MenuController, ModalController } from '@ionic/angular';
 import { FilterCitiesPipe } from '../../pipes/filter-cities.pipe'; // Importa el pipe
+import { TerminosCondicionesModalComponent } from '../terminos-condiciones-modal/terminos-condiciones-modal.component';
 @Component({
   selector: 'app-registro-donante',
   templateUrl: './registro-donante.component.html',
@@ -49,6 +50,8 @@ export class RegistroDonanteComponent implements OnInit {
     private registroDataService: RegistroDataService,
     private empresaService: EmpresaService,
     private router: Router,
+          private modalController: ModalController
+
 
   ) { }
 
@@ -108,8 +111,12 @@ export class RegistroDonanteComponent implements OnInit {
     this.closeRegisterModal();
   }
 
-  openTerms() {
-    // abrir modal de términos y condiciones
+   async openTerms(event: Event) {
+    event.preventDefault(); 
+    const modal = await this.modalController.create({
+      component: TerminosCondicionesModalComponent,
+    });
+    await modal.present();
   }
   async backToLogin() {
     await this.modalCtrl.dismiss();

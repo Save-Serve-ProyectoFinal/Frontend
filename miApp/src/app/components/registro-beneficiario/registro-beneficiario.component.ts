@@ -6,6 +6,7 @@ import { BancoalimentosService } from 'src/app/services/bancoAlimentoService/ban
 import { ModalController, MenuController, IonicModule, AlertController } from '@ionic/angular';
 import { LoginmodalComponent } from '../loginmodal/loginmodal.component';
 import { CommonModule } from '@angular/common';
+import { TerminosCondicionesModalComponent } from '../terminos-condiciones-modal/terminos-condiciones-modal.component';
 
 @Component({
   selector: 'app-registro-beneficiario',
@@ -16,7 +17,9 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    IonicModule
+    IonicModule,
+      TerminosCondicionesModalComponent
+
   ]
 })
 export class RegistroBeneficiarioComponent implements OnInit {
@@ -48,6 +51,7 @@ export class RegistroBeneficiarioComponent implements OnInit {
     private registroBeneficiarioDataService: RegistroBeneficiarioDataService,
     private router: Router,
       private alertController: AlertController,
+      private modalController: ModalController
 
   ) {}
 
@@ -77,12 +81,15 @@ export class RegistroBeneficiarioComponent implements OnInit {
 
   toggleLogin() {
     this.closeRegisterModal();
-    // lógica para mostrar modal de login...
   }
 
-  openTerms() {
-    // abrir modal de términos y condiciones
-  }
+ async openTerms(event: Event) {
+  event.preventDefault(); 
+  const modal = await this.modalController.create({
+    component: TerminosCondicionesModalComponent,
+  });
+  await modal.present();
+}
 
  
 registro() {

@@ -85,7 +85,7 @@
     <ion-item lines="none">
       <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
       <ion-label>
-        Yo acepto los <a href="#" (click)="openTerms()">términos y condiciones</a>
+        Yo acepto los <a href="#" (click)="openTerms($event)">términos y condiciones</a>
       </ion-label>
     </ion-item>
     <ion-note slot="error" *ngIf="beneficiarioForm.get('terms')?.touched && beneficiarioForm.get('terms')?.invalid"

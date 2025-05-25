@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { RegistroDonanteComponent } from './registro-donante.component';
 import { FilterCitiesPipe } from '../../pipes/filter-cities.pipe';
+import { TerminosCondicionesModalComponent } from '../terminos-condiciones-modal/terminos-condiciones-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FilterCitiesPipe } from '../../pipes/filter-cities.pipe';
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    TerminosCondicionesModalComponent
   ],
   exports: [RegistroDonanteComponent]
 })

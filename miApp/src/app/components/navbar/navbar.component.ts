@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
     this.initEmpresaForm();
     this.selectedPlan = this.subscriptionService.getPlan() || 'BASICA';
     this.ciudades.sort((a, b) => a.localeCompare(b));
-    
+
     // Detectar si es móvil
     this.platform.ready().then(() => {
       this.isMobile = this.platform.width() < 768;
@@ -133,10 +133,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
- 
+
   async presentLoginModal() {
     const modal = await this.modalController.create({
-      component: LoginmodalComponent, 
+      component: LoginmodalComponent,
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -147,25 +147,25 @@ export class NavbarComponent implements OnInit {
     //   this.navigateBasedOnRole(this.userRole);
     // }
     if (data?.loggedIn) {
-  this.userRole = data.userRole;
-  this.userName = data.userName;
-  this.navigateBasedOnRole(this.userRole);
-  this.presentToast(`¡Bienvenido, ${this.userName}!`);
-}
+      this.userRole = data.userRole;
+      this.userName = data.userName;
+      this.navigateBasedOnRole(this.userRole);
+      this.presentToast(`¡Bienvenido, ${this.userName}!`);
+    }
   }
-  
+
 
   async presentRegisterOptions() {
     const modal = await this.modalController.create({
-      component: RegistroOpcionesModalComponent, 
+      component: RegistroOpcionesModalComponent,
       cssClass: 'auth-modal'
     });
     await modal.present();
   }
-  
+
   async presentForgotPasswordModal() {
     const modal = await this.modalController.create({
-      component: ForgotPasswordModalComponent, 
+      component: ForgotPasswordModalComponent,
       cssClass: 'auth-modal'
     });
     await modal.present();
@@ -173,7 +173,7 @@ export class NavbarComponent implements OnInit {
 
   async presentDonanteForm() {
     const modal = await this.modalController.create({
-      component: EmpresaRegistroModalComponent, 
+      component: EmpresaRegistroModalComponent,
       cssClass: 'auth-modal',
       componentProps: {
         selectedPlan: this.selectedPlan
@@ -181,7 +181,7 @@ export class NavbarComponent implements OnInit {
     });
     await modal.present();
   }
-  articulos(){
+  articulos() {
     this.router.navigate(['/articulos']);
   }
   nuestrosDonantes() {
@@ -226,7 +226,7 @@ export class NavbarComponent implements OnInit {
         },
         {
           text: 'Suscripciones',
-          icon: 'pricetag-outline', 
+          icon: 'pricetag-outline',
           handler: () => {
             this.presentSuscripciones();
           }
@@ -240,105 +240,106 @@ export class NavbarComponent implements OnInit {
     });
     await actionSheet.present();
   }
-  
+
   presentSuscripciones() {
     this.router.navigate(['/suscripciones']);
   }
-  index(){
+  index() {
     this.router.navigate(['/home']);
   }
-  
- private getUserMenuButtons(): Array<{ text: string; icon: string; handler: () => void; role?: string }> {
-  if (this.isLoggedIn) {
-    const buttons = [
-      {
-        text: 'Mi Perfil',
-        icon: 'person',
-        handler: () => {
-          if (this.userRole === 'EMPRESA') {
-            this.router.navigate(['/perfil-donante']);
-          } else if (this.userRole === 'BANCO_DE_ALIMENTOS') {
-            this.router.navigate(['/perfil-beneficiario']);
-          } else {
-            this.router.navigate(['/perfil']); // fallback genérico
+
+  private getUserMenuButtons(): Array<{ text: string; icon: string; handler: () => void; role?: string }> {
+    if (this.isLoggedIn) {
+      const buttons = [];
+      if (this.userRole !== 'ADMIN') {
+        buttons.push({
+          text: 'Mi Perfil',
+          icon: 'person',
+          handler: () => {
+            if (this.userRole === 'EMPRESA') {
+              this.router.navigate(['/perfil-donante']);
+            } else if (this.userRole === 'BANCO_DE_ALIMENTOS') {
+              this.router.navigate(['/perfil-beneficiario']);
+            } else {
+              this.router.navigate(['/perfil']); 
+            }
           }
-        }
+        });
       }
-    ];
 
-    // Zona según rol
-    if (this.userRole === 'EMPRESA') {
+      // Zona según rol
+      if (this.userRole === 'EMPRESA') {
+        buttons.push({
+          text: 'Zona Empresa',
+          icon: 'business',
+          handler: () => {
+            this.router.navigate(['/donaciones']);
+          }
+        });
+      } else if (this.userRole === 'ADMIN') {
+        buttons.push({
+          text: 'Zona Admin',
+          icon: 'settings',
+          handler: () => {
+            this.router.navigate(['/administracion']);
+          }
+        });
+      } else if (this.userRole === 'BANCO_DE_ALIMENTOS') {
+        buttons.push({
+          text: 'Zona Banco Alimentos',
+          icon: 'basket',
+          handler: () => {
+            this.router.navigate(['/banco-alimentos']);
+          }
+        });
+      }
+
+      // Cerrar sesión
       buttons.push({
-        text: 'Zona Empresa',
-        icon: 'business',
+        text: 'Cerrar Sesión',
+        icon: 'log-out',
         handler: () => {
-          this.router.navigate(['/donaciones']);
+          this.logout();
         }
       });
-    } else if (this.userRole === 'ADMIN') {
+
+      // Cancelar
       buttons.push({
-        text: 'Zona Admin',
-        icon: 'settings',
-        handler: () => {
-          this.router.navigate(['/administracion']);
-        }
-      });
-    } else if (this.userRole === 'BANCO_DE_ALIMENTOS') {
-      buttons.push({
-        text: 'Zona Banco Alimentos',
-        icon: 'basket',
-        handler: () => {
-          this.router.navigate(['/banco-alimentos']);
-        }
-      });
-    }
-
-    // Cerrar sesión
-    buttons.push({
-      text: 'Cerrar Sesión',
-      icon: 'log-out',
-      handler: () => {
-        this.logout();
-      }
-    });
-
-    // Cancelar
-    buttons.push({
-      text: 'Cancelar',
-      icon: 'close',
-      handler: () => {
-        this.dismissModal();
-      }
-    });
-
-    return buttons;
-  } else {
-    return [
-      {
-        text: 'Iniciar Sesión',
-        icon: 'log-in',
-        handler: () => {
-          this.presentLoginModal();
-        }
-      },
-      {
-        text: 'Registrarse',
-        icon: 'person-add',
-        handler: () => {
-          this.presentRegisterOptions();
-        }
-      },
-      {
         text: 'Cancelar',
         icon: 'close',
-        role: 'cancel',
-        handler: function (): void {
-          throw new Error('Function not implemented.');
+        handler: () => {
+          this.dismissModal();
         }
-      }
-    ];
+      });
+
+      return buttons;
+    } else {
+      return [
+        {
+          text: 'Iniciar Sesión',
+          icon: 'log-in',
+          handler: () => {
+            this.presentLoginModal();
+          }
+        },
+        {
+          text: 'Registrarse',
+          icon: 'person-add',
+          handler: () => {
+            this.presentRegisterOptions();
+          }
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: function (): void {
+            throw new Error('Function not implemented.');
+          }
+        }
+      ];
+    }
   }
-}
 
 
   agregarBeneficiario() {
@@ -470,7 +471,7 @@ export class NavbarComponent implements OnInit {
       behavior: 'smooth'
     });
   }
-  
+
   selectPlan(plan: string): void {
     this.selectedPlan = plan;
     this.subscriptionService.setPlan(plan);

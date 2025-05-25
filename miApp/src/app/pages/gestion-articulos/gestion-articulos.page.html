@@ -14,7 +14,8 @@
     <ion-card>
       <ion-card-content>
 
-        <ion-item lines="full" [class.ion-invalid]="articuloForm.get('titulo')?.invalid && articuloForm.get('titulo')?.touched">
+        <ion-item lines="full"
+          [class.ion-invalid]="articuloForm.get('titulo')?.invalid && articuloForm.get('titulo')?.touched">
           <ion-label position="floating">Título del Artículo</ion-label>
           <ion-input type="text" formControlName="titulo"></ion-input>
         </ion-item>
@@ -22,25 +23,31 @@
           El título es obligatorio y debe tener entre 5 y 100 caracteres.
         </ion-text>
 
-        <ion-item lines="full" [class.ion-invalid]="articuloForm.get('subtitulo')?.invalid && articuloForm.get('subtitulo')?.touched">
+        <ion-item lines="full"
+          [class.ion-invalid]="articuloForm.get('subtitulo')?.invalid && articuloForm.get('subtitulo')?.touched">
           <ion-label position="floating">Subtítulo</ion-label>
           <ion-input type="text" formControlName="subtitulo"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="articuloForm.get('subtitulo')?.invalid && articuloForm.get('subtitulo')?.touched">
+        <ion-text color="danger"
+          *ngIf="articuloForm.get('subtitulo')?.invalid && articuloForm.get('subtitulo')?.touched">
           El subtítulo es obligatorio y debe tener entre 4 y 100 caracteres.
         </ion-text>
 
-        <ion-item lines="full" [class.ion-invalid]="articuloForm.get('contenido')?.invalid && articuloForm.get('contenido')?.touched">
+        <ion-item lines="full"
+          [class.ion-invalid]="articuloForm.get('contenido')?.invalid && articuloForm.get('contenido')?.touched">
           <ion-label position="floating">Texto del Artículo</ion-label>
           <ion-textarea rows="5" formControlName="contenido"></ion-textarea>
         </ion-item>
-        <ion-text color="danger" *ngIf="articuloForm.get('contenido')?.invalid && articuloForm.get('contenido')?.touched">
+        <ion-text color="danger"
+          *ngIf="articuloForm.get('contenido')?.invalid && articuloForm.get('contenido')?.touched">
           El texto es obligatorio y debe tener al menos 20 caracteres.
         </ion-text>
 
         <ion-item lines="full">
-          <ion-label>Imagen</ion-label>
-          <input type="file" accept="image/*" (change)="onImagenSeleccionada($event)" />
+          <div style="width: 100%;">
+            <ion-label>Imagen</ion-label>
+            <input type="file" accept="image/*" (change)="onImagenSeleccionada($event)" style="margin-top: 8px; margin-bottom: 5px;" />
+          </div>
         </ion-item>
         <ion-text color="danger" *ngIf="articuloForm.get('imagen')?.invalid && articuloForm.get('imagen')?.touched">
           Por favor, selecciona una imagen válida.
@@ -49,7 +56,8 @@
         <ion-grid class="ion-margin-top">
           <ion-row class="ion-justify-content-center">
             <ion-col size="auto">
-              <ion-button class="yellow-button" type="submit" [disabled]="articuloForm.invalid || (!imagenSeleccionada && !modoEdicion)">
+              <ion-button class="yellow-button" type="submit"
+                [disabled]="articuloForm.invalid || (!imagenSeleccionada && !modoEdicion)">
                 {{ modoEdicion ? 'Actualizar Artículo' : 'Guardar Artículo' }}
               </ion-button>
             </ion-col>

@@ -3,7 +3,7 @@ import { SuscripcionService } from '../../services/suscripcionService/suscripcio
 import { RegistroDataService } from '../../services/registrodata/registro-data.service';
 import { Router } from '@angular/router';
 import { EmpresaService } from '../../services/empresaService/empresa.service';
-import { IonAccordionGroup } from '@ionic/angular';
+import { IonAccordionGroup, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pasarela-pago',
@@ -29,7 +29,8 @@ export class PasarelaPagoPage implements OnInit {
     private subscriptionService: SuscripcionService,
     private registroDataService: RegistroDataService,
     private empresaService: EmpresaService,
-    private router: Router
+    private router: Router,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -78,6 +79,7 @@ export class PasarelaPagoPage implements OnInit {
       alert('Pago realizado con éxito (Tarjeta de crédito)');
     }
     this.processRegistration();
+     this.navCtrl.back();
   }
 
   processRegistration() {

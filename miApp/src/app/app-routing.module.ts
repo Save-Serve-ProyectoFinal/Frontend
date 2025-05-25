@@ -49,14 +49,28 @@ const routes: Routes = [
   {
     path: 'perfil-donante',
     loadChildren: () => import('./pages/perfil-donante/perfil-donante.module').then( m => m.PerfilDonantePageModule)
-  },  {
+  },
+  {
     path: 'perfil-beneficiario',
     loadChildren: () => import('./pages/perfil-beneficiario/perfil-beneficiario.module').then( m => m.PerfilBeneficiarioPageModule)
   },
+ 
   {
-    path: 'zona-articulos',
-    loadChildren: () => import('./pages/zona-articulos/zona-articulos.module').then( m => m.ZonaArticulosPageModule)
+    path: 'administracion',
+    loadChildren: () => import('./pages/administracion/administracion.module').then( m => m.AdministracionPageModule)
+  },
+  {
+    path: 'gestion-articulos',
+    loadChildren: () => import('./pages/gestion-articulos/gestion-articulos.module').then( m => m.GestionArticulosPageModule)
+  },  {
+    path: 'gestion-beneficiarios',
+    loadChildren: () => import('./pages/gestion-beneficiarios/gestion-beneficiarios.module').then( m => m.GestionBeneficiariosPageModule)
+  },
+  {
+    path: 'gestion-donantes',
+    loadChildren: () => import('./pages/gestion-donantes/gestion-donantes.module').then( m => m.GestionDonantesPageModule)
   }
+
 
 
 

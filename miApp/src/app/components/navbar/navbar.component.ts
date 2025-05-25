@@ -280,7 +280,7 @@ export class NavbarComponent implements OnInit {
         text: 'Zona Admin',
         icon: 'settings',
         handler: () => {
-          this.router.navigate(['/zonaAdmin']);
+          this.router.navigate(['/administracion']);
         }
       });
     } else if (this.userRole === 'BANCO_DE_ALIMENTOS') {

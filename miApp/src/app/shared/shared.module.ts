@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { IonicModule } from '@ionic/angular';
 
-
-
 @NgModule({
   declarations: [NavbarComponent],
   imports: [CommonModule, IonicModule],
